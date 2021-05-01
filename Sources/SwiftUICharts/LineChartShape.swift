@@ -12,13 +12,16 @@ struct LineChartShape: Shape {
 
     func path(in rect: CGRect) -> Path {
         Path { path in
-            let start = CGFloat(dataPoints.first?.endValue ?? 0) / CGFloat(dataPoints.max()?.endValue ?? 1)
+            let max = dataPoints.max()?.endValue ?? 1
+            let min = dataPoints.min()?.endValue ?? 0
+            let height = max - min
+            let start = CGFloat(dataPoints.first?.endValue ?? 0 - min) / CGFloat(height)
             path.move(to: CGPoint(x: 0, y: rect.height - rect.height * start))
             let stepX = rect.width / CGFloat(dataPoints.count)
             var currentX: CGFloat = 0
             dataPoints.forEach {
                 currentX += stepX
-                let y = CGFloat($0.endValue / (dataPoints.max()?.endValue ?? 1)) * rect.height
+                let y = CGFloat(($0.endValue - min) / (height)) * rect.height
                 path.addLine(to: CGPoint(x: currentX, y: rect.height - y))
             }
 

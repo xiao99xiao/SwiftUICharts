@@ -123,7 +123,7 @@ struct LineChartView_Previews: PreviewProvider {
         HStack {
             LineChartView(dataPoints: DataPoint.mock)
             LineChartView(dataPoints: DataPoint.mock)
-        }.chartStyle(LineChartStyle(showAxis: false, showLabels: false))
+        }.chartStyle(LineChartStyle(showAxis: true, showLabels: false))
     }
 }
 #endif

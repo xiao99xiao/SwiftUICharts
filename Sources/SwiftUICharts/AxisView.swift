@@ -18,8 +18,8 @@ struct AxisView: View {
                     .font(.caption)
             }
             Spacer()
-            dataPoints.max().map {
-                Text(String(Int($0.endValue / 2)))
+            dataPoints.min().map {
+                Text(String(Int($0.endValue)))
                     .foregroundColor(.accentColor)
                     .font(.caption)
             }
